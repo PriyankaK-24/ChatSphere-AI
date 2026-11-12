@@ -8,3 +8,4 @@ google-genai>=1.0
 pwdlib[argon2]
 PyJWT
 email-validator
+psycopg[binary]>=3.2
