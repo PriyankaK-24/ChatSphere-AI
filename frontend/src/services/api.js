@@ -5,6 +5,10 @@ import { parseSSE } from "../utils/sse";
 const UNREACHABLE = "Cannot reach the server. Is the backend running?";
 const TOKEN_KEY = "chatsphere_access_token";
 
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || ""
+).replace(/\/$/, "");
+
 // Authentication helpers
 export const getStoredToken = () => sessionStorage.getItem(TOKEN_KEY);
 
@@ -47,7 +51,7 @@ async function request(path, { method = "GET", body, auth = true } = {}) {
   let res;
 
   try {
-    res = await fetch(`/api${path}`, {
+    res = await fetch(`${API_BASE_URL}/api${path}`, {
       method,
       headers: getHeaders(body, auth),
       body: body ? JSON.stringify(body) : undefined,
@@ -96,7 +100,7 @@ async function streamSSE(
   let res;
 
   try {
-    res = await fetch(`/api${path}`, {
+    res = await fetch(`${API_BASE_URL}/api${path}`, {
       method: "POST",
       headers: getHeaders(body),
       body: JSON.stringify(body ?? {}),
