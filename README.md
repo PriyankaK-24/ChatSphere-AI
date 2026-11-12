@@ -69,7 +69,10 @@ currently listed in Google AI Studio and restart the backend.
 
 ## Known limitations
 
-- Single user, no login. Anyone who can reach the backend can read the data.
+- JWT-based user authentication with secure password hashing.
+- User-specific conversations, chat history, and memories.
+- Protected API endpoints with authentication and access controls.
+- Multi-user data isolation.
 - Tables are created automatically; there are no migrations yet (add Alembic
   before changing the schema on a database you care about).
 - Voice input uses the browser's speech recognition: Chrome/Edge/Safari only, and
